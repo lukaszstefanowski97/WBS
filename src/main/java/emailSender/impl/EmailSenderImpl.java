@@ -69,11 +69,8 @@ public class EmailSenderImpl implements EmailSender {
                                       String receiverAddress, String message) throws InterruptedException {
 
         while(true) {
-            for (int j = interval; j == 1; j--) {
                 callApi(senderAddress, senderPassword, receiverAddress, message);
-                System.out.println(interval);
-                TimeUnit.SECONDS.sleep(1);
-            }
+                TimeUnit.SECONDS.sleep(interval);
         }
     }
 }
