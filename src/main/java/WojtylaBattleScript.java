@@ -12,6 +12,5 @@ public class WojtylaBattleScript {
         } catch (InterruptedException e) {
             System.out.println(Messages.GOODBYE_MESSAGE);
         }
-        System.out.println(Messages.GOODBYE_MESSAGE);
     }
 }
