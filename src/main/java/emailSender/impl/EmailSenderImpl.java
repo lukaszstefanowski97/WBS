@@ -56,8 +56,8 @@ public class EmailSenderImpl implements EmailSender {
                                       String receiverAddress, String message) throws InterruptedException {
 
         for (int i = 0; i < quantity; i++) {
-            callApi(senderAddress, senderPassword, receiverAddress, message);
-            TimeUnit.SECONDS.sleep(interval);
+                callApi(senderAddress, senderPassword, receiverAddress, message);
+                TimeUnit.SECONDS.sleep(interval);
         }
     }
 
