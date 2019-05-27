@@ -11,6 +11,9 @@ public class Messages {
 
     public static final String INVALID_INPUT_MESSAGE = "Invalid input... Please type again:";
 
+    public static final String IS_NOT_GMAIL = "Google Mali API does not allow email addresses which are not from " +
+            "gmail. Please use gmail address:";
+
     public static final String GET_SENDER_EMAIL = "Type sender email: ";
 
     public static final String GET_PASSWORD = "Type sender password: ";

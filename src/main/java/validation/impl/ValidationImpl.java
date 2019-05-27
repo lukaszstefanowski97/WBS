@@ -1,5 +1,6 @@
 package validation.impl;
 
+import messages.Messages;
 import validation.Validation;
 
 public class ValidationImpl implements Validation {
@@ -27,6 +28,15 @@ public class ValidationImpl implements Validation {
                 ++apeCounter;
             }
         }
-        return apeCounter <= 1;
+
+        if (apeCounter != 1) {
+            return false;
+        } else {
+            if (email.substring(email.indexOf('@') + 1).equals("gmail.com")) {
+                return true;
+            }
+            System.out.println(Messages.IS_NOT_GMAIL);
+            return false;
+        }
     }
 }
