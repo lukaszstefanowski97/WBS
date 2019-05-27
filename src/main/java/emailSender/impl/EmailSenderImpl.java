@@ -1,6 +1,7 @@
 package emailSender.impl;
 
 import emailSender.EmailSender;
+import messages.Messages;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -40,14 +41,14 @@ public class EmailSenderImpl implements EmailSender {
             msg.setFrom(new InternetAddress(senderAddress));
             msg.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(receiverAddress));
-            msg.setSubject("WojtylaBattleScript");
+            msg.setSubject(Messages.SUBJECT);
             msg.setText(message);
             Transport.send(msg);
-            System.out.println("\nEmail sent");
+            System.out.println(Messages.EMAIL_SENT);
         } catch (AddressException e) {
-            System.out.println("\nAddress Exception");
+            System.out.println(Messages.ADDRESS_EXCEPTION);
         } catch (MessagingException e) {
-            System.out.println("\nMessage Exception");
+            System.out.println(Messages.MESSAGE_EXCEPTION);
         }
     }
 
@@ -59,6 +60,7 @@ public class EmailSenderImpl implements EmailSender {
                 callApi(senderAddress, senderPassword, receiverAddress, message);
                 TimeUnit.SECONDS.sleep(interval);
         }
+        System.out.println(Messages.GOODBYE_MESSAGE);
     }
 
     @Override

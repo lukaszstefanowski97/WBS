@@ -6,11 +6,13 @@ public class ValidationImpl implements Validation {
 
     @Override
     public boolean validateMenuOption(Integer option) {
+        if(option == null) return false;
         return option == 1 || option == 2 || option == 3;
     }
 
     @Override
     public boolean validateQuantityOrInterval(Integer number) {
+        if (number == null) return false;
         return number > 0;
     }
 

@@ -21,7 +21,7 @@ public class MenuImpl implements Menu {
             Integer value = enterInteger.nextInt();
             return value;
         } catch (Exception type) {
-            System.out.println("That was not an integer. Please type again:\n");
+            System.out.println(Messages.INVALID_INPUT_MESSAGE);
             return scanInteger();
         }
     }
@@ -36,7 +36,7 @@ public class MenuImpl implements Menu {
     private String scanEmail() {
         String email = scanString();
         if (!validation.validateEmailAddress(email)) {
-            System.out.println("Email Address was incorrect. Please type again: ");
+            System.out.println(Messages.INVALID_INPUT_MESSAGE);
             scanEmail();
         }
         return email;
@@ -60,6 +60,19 @@ public class MenuImpl implements Menu {
         return interval;
     }
 
+    private String[] getAuthorizationData() {
+        String[] data = new String[4];
+        System.out.println(Messages.GET_SENDER_EMAIL);
+        data[0] = scanEmail();
+        System.out.println(Messages.GET_PASSWORD);
+        data[1] = scanString();
+        System.out.println(Messages.GET_RECIEVER_EMAIL);
+        data[2] = scanEmail();
+        System.out.println(Messages.GET_MESSAGE);
+        data[3] = scanString();
+        return data;
+    }
+
     @Override
     public void displayMenu() throws InterruptedException {
         System.out.println(Messages.MENU_MESSAGE);
@@ -71,35 +84,21 @@ public class MenuImpl implements Menu {
 
     @Override
     public void sendQuantityOfMails() throws InterruptedException {
-        System.out.println("Choose quantity: ");
+        System.out.println(Messages.GET_QUANTITY);
         Integer quantity = chooseQuantity();
-        System.out.println("Choose interval: ");
+        System.out.println(Messages.GET_INTERVAL);
         Integer interval = chooseInterval();
-        System.out.println("Type sender email: ");
-        String senderEmail = scanEmail();
-        System.out.println("Type sender password: ");
-        String senderPassword = scanString();
-        System.out.println("Type reciever email: ");
-        String recieverEmail = scanEmail();
-        System.out.println("Type your message");
-        String message = scanString();
+        String[] data = getAuthorizationData();
 
-        emailSender.sendEmailWithQuantity(quantity, interval, senderEmail, senderPassword, recieverEmail, message);
+        emailSender.sendEmailWithQuantity(quantity, interval, data[0], data[1], data[2], data[3]);
     }
 
     @Override
     public void sendInfiniteMails() throws InterruptedException {
-        System.out.println("Choose interval: ");
+        System.out.println(Messages.GET_INTERVAL);
         Integer interval = chooseInterval();
-        System.out.println("Type sender email: ");
-        String senderEmail = scanEmail();
-        System.out.println("Type sender password: ");
-        String senderPassword = scanString();
-        System.out.println("Type reciever email: ");
-        String recieverEmail = scanEmail();
-        System.out.println("Type your message");
-        String message = scanString();
+        String[] data = getAuthorizationData();
 
-        emailSender.sendEmailsUntilYouDie(interval, senderEmail, senderPassword, recieverEmail, message);
+        emailSender.sendEmailsUntilYouDie(interval, data[0], data[1], data[2], data[3]);
     }
 }
