@@ -11,6 +11,7 @@ public class WojtylaBattleScript {
             menu.displayMenu();
         } catch (InterruptedException e) {
             System.out.println(Messages.GOODBYE_MESSAGE);
+            System.exit(0);
         }
     }
 }
